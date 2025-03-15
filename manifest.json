@@ -1,0 +1,21 @@
+{
+    "name": "Crossworx Crypto Dashboard",
+    "short_name": "Crypto Tracker",
+    "description": "Echtzeit-Crypto-Dashboard mit VWAP, Fear & Greed Index und News",
+    "start_url": "/index.php",
+    "display": "standalone",
+    "background_color": "#f5f5f5",
+    "theme_color": "#333333",
+    "icons": [
+      {
+        "src": "assets/images/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "assets/images/png"
+      },
+      {
+        "src": "assets/images/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "assets/images/png"
+      }
+    ]
+  }

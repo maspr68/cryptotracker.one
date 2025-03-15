@@ -1,0 +1,9 @@
+{
+    "endpoint": "https://fcm.googleapis.com/fcm/send/ABC123...",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "BOrN...DEMO_KEY...",
+      "auth": "abc123"
+    }
+  }
+  
