@@ -350,15 +350,20 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
   
   <!-- ApexCharts und weitere Skripte -->
   <script>
+    // Variablen zur Anpassung des Annotation-Labels
+    let annotationFontSize = '14px';
+    let annotationFontWeight = 'bold';
+    let annotationFontFamily = 'Arial, sans-serif';
+    
     // Funktion zur Aktualisierung der Annotationen im VWAP-Chart:
-    // - Durchschnitt (blau)
-    // - Maximum (grün)
-    // - Minimum (rot)
+    // Hier wird für die Durchschnittslinie (blau) ein Label mit dem formatierten USD-Wert
+    // zentriert oberhalb der Linie angezeigt.
     function updateAnnotationLines() {
       if (currentVwapData.length > 0) {
         var value24h = currentVwapData[0];
         var currentValue = currentVwapData[currentVwapData.length - 1];
         var avg = (value24h + currentValue) / 2;
+        var formattedAvg = avg.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         var maxVal = Math.max(...currentVwapData);
         var minVal = Math.min(...currentVwapData);
         lineChart.updateOptions({
@@ -368,7 +373,18 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
                 y: avg,
                 borderColor: 'blue',
                 strokeDashArray: 0,
-                label: { show: false }
+                label: { 
+                  show: true,
+                  text: formattedAvg,
+                  style: {
+                    fontSize: annotationFontSize,
+                    fontWeight: annotationFontWeight,
+                    fontFamily: annotationFontFamily,
+                    color: '#000'
+                  },
+                  offsetY: -20,  // verschiebt das Label 20 Pixel nach oben (oberhalb der Linie)
+                  offsetX: 0     // zentriert das Label horizontal
+                }
               },
               {
                 y: maxVal,
@@ -594,12 +610,12 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
       updateAnnotationLines();
     }
     
-    // Funktion zur Aktualisierung der Annotationen (Durchschnitt, Maximum, Minimum)
     function updateAnnotationLines() {
       if (currentVwapData.length > 0) {
         var value24h = currentVwapData[0];
         var currentValue = currentVwapData[currentVwapData.length - 1];
         var avg = (value24h + currentValue) / 2;
+        var formattedAvg = avg.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         var maxVal = Math.max(...currentVwapData);
         var minVal = Math.min(...currentVwapData);
         lineChart.updateOptions({
@@ -609,7 +625,18 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
                 y: avg,
                 borderColor: 'blue',
                 strokeDashArray: 0,
-                label: { show: false }
+                label: { 
+                  show: true,
+                  text: formattedAvg,
+                  style: {
+                    fontSize: annotationFontSize,
+                    fontWeight: annotationFontWeight,
+                    fontFamily: annotationFontFamily,
+                    color: '#000'
+                  },
+                  offsetY: -20,
+                  offsetX: 0
+                }
               },
               {
                 y: maxVal,
