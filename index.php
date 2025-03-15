@@ -350,14 +350,13 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
   
   <!-- ApexCharts und weitere Skripte -->
   <script>
-    // Variablen zur Anpassung des Annotation-Labels
+    // Globale Variablen zur Einstellung des Annotation-Labels
     let annotationFontSize = '14px';
     let annotationFontWeight = 'bold';
     let annotationFontFamily = 'Arial, sans-serif';
     
     // Funktion zur Aktualisierung der Annotationen im VWAP-Chart:
-    // Hier wird für die Durchschnittslinie (blau) ein Label mit dem formatierten USD-Wert
-    // zentriert oberhalb der Linie angezeigt.
+    // Zeigt den Durchschnittswert zentriert oberhalb der Linie an.
     function updateAnnotationLines() {
       if (currentVwapData.length > 0) {
         var value24h = currentVwapData[0];
@@ -366,6 +365,7 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
         var formattedAvg = avg.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         var maxVal = Math.max(...currentVwapData);
         var minVal = Math.min(...currentVwapData);
+        console.log("Avg:", avg, "formatted:", formattedAvg);  // Debug-Ausgabe
         lineChart.updateOptions({
           annotations: {
             yaxis: [
@@ -382,8 +382,8 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
                     fontFamily: annotationFontFamily,
                     color: '#000'
                   },
-                  offsetY: -20,  // verschiebt das Label 20 Pixel nach oben (oberhalb der Linie)
-                  offsetX: 0     // zentriert das Label horizontal
+                  offsetY: -30,  // Positioniert das Label 30 Pixel oberhalb der Linie
+                  offsetX: 0
                 }
               },
               {
@@ -618,6 +618,7 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
         var formattedAvg = avg.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         var maxVal = Math.max(...currentVwapData);
         var minVal = Math.min(...currentVwapData);
+        console.log("Avg:", avg, "formatted:", formattedAvg);
         lineChart.updateOptions({
           annotations: {
             yaxis: [
@@ -634,7 +635,7 @@ if (file_exists(__DIR__ . '/vapid_config.php')) {
                     fontFamily: annotationFontFamily,
                     color: '#000'
                   },
-                  offsetY: -20,
+                  offsetY: -30,
                   offsetX: 0
                 }
               },
